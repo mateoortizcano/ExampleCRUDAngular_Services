@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="js/ext/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controller/personCtrl.js"></script>
+	<script type="text/javascript" src="js/service/personService.js"></script>
+	<meta charset="UTF-8">
+	<title>Persona CRUD</title>
+</head>
+<body>
+	<div data-ng-app="app" data-ng-controller="personCtrl">
+	<input type="text" id="personId" name="personId" data-ng-model="id" required="required"></input> 
+	<input type="button" id="personSearch" name="personSearch" value="search" data-ng-click="search(id)"></input> <br/> <br/>
+	Nombre: {{personOut.nombre}}<br/>
+	apellidos:{{personOut.apellidos}}<br/>
+	Teléfono: {{personOut.telefono}}<br/>
+	<input type="button" id="personList" name="personList" value="list" data-ng-click="getList()"></input<br />
+	<div data-ng-show="peoplelist.length != 0">	
+		<table id="basicData">
+			<tr>	
+				<th>Identificacion</th>			
+				<th>Nombre</th>
+				<th>apellidos</th>
+				<th>Teléfono</th>
+				<th>Acciones</th>
+			</tr>
+			<tr data-ng-repeat="item in peoplelist ">
+				<td>{{item.id}}</td>				
+				<td>{{item.nombre}}</td>
+				<td>{{item.apellidos}}</td>
+				<td>{{item.telefono}}</td>
+				<td><a data-ng-click="deleteperson(item.id)"><img src="img/del.png"></a><a data-ng-click="editperson(item)"><img src="img/edit.png"></a> </td>
+			</tr>
+		</table>
+	</div><br /> <br />
+	<table id="basicData">
+		<tr>			
+			<td><input type="text" id="id1" name="id" data-ng-model="personIn.id"  required="required" hidden="true"/></td>
+		</tr>
+		<tr>
+			<td>Nombre</td>
+			<td><input type="text" id="nombre1" name="nombre" data-ng-model="personIn.nombre" required="required"/></td>
+		</tr>
+		<tr>
+			<td>apellidos</td>
+			<td><input type="text" id="apellidos1" name="apellidos" data-ng-model="personIn.apellidos" required="required"/></td>
+		</tr>
+		<tr>
+			<td>Teléfono</td>
+			<td><input type="text" id="telefono1" name="telefono"data-ng-model="personIn.telefono" required="required"/></td>
+		</tr>
+	</table><br /> 
+	<input type="button" id="save1" name="saveBtn" value="Guardar" data-ng-click="save(personIn)" /> 
+	<input type="button" id="" name="saveBtn" value="Actualizar" data-ng-click="update(personIn)" />
+	</div>
+</body>
+</html>
